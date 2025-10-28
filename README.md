@@ -11,13 +11,16 @@ Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/)
 - `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
 - `index.njk` — page template that renders sections using the YAML data.
-- `css/style.css` — shared styling for desktop preview and A4 print layout.
+- `css/base.css` — shared typography and page scaffolding for screen and print.
+- `css/display.css` — screen-focused layout enhancements and interactive chrome.
+- `css/sections.css` — styling for the individual resume sections and typography.
+- `css/print.css` — print-only overrides plus `@page` sizing.
 - `.eleventy.js` — Eleventy configuration enabling YAML data loading and stylesheet passthrough.
 
 ## Customization
 - Edit `_data/cv.yaml` to adjust content. Keep entries chronological (newest first) to match the rendered order.
 - Modify or add sections in `index.njk` to reflect additional resume components (e.g., awards, speaking).
-- Tweak typography, spacing, and print rules in `css/style.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
+- Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
 ## PDF Export
 - In the browser preview, use the “Download PDF” button (or `⌘/Ctrl + P`) to open the print dialog.

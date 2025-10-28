@@ -1,0 +1,23 @@
+@media print {
+  body {
+    background-color: #ffffff;
+    padding: 0;
+  }
+
+  .download-actions {
+    display: none;
+  }
+
+  .page {
+    box-shadow: none;
+    margin: 0 auto;
+    padding: 0mm;
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
