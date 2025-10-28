@@ -23,11 +23,7 @@ layout: layout.njk
         <div class="skill">
             <h3>{{ skill.label }}</h3>
             {% if skill.items %}
-            <ul>
-                {% for item in skill.items %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
+            <p class="skill-items">{{ skill.items | join(', ') }}</p>
             {% elseif skill.description %}
             <p>{{ skill.description }}</p>
             {% endif %}

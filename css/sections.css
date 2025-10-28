@@ -1,21 +1,19 @@
 h1 {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
 h2 {
   font-size: 1.5rem;
   border-bottom: 2px solid #ddd;
-  padding-bottom: 0.5rem;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 0.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
 h3 {
-  font-size: 1.1rem;
-  margin: 0;
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -24,12 +22,13 @@ h3 {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 0.5rem 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   color: #555;
 }
 
 .contact-info a {
   color: inherit;
+  text-decoration: underline;
 }
 
 .summary p {
@@ -37,14 +36,13 @@ h3 {
 }
 
 .skills {
-  margin-top: 2rem;
+  margin: 0;
 }
 
 .skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .skill h3 {
@@ -52,17 +50,20 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #444;
-  margin-bottom: 0.5rem;
 }
 
-.skills-grid ul {
-  list-style: none;
-  padding-left: 0;
+.skill-items {
   margin: 0;
+  color: #333;
+  line-height: 1.4;
 }
 
-.skills-grid li {
-  margin-bottom: 0.3rem;
+.job {
+  margin-bottom: 1rem;
+}
+
+.job:last-child {
+  margin-bottom: 0; /* remove it for the last one */
 }
 
 .job-header {
@@ -70,7 +71,7 @@ h3 {
   justify-content: space-between;
   align-items: baseline;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .dates {
@@ -86,12 +87,13 @@ h3 {
 }
 
 ul {
+  margin-block: 0rem;
   padding-left: 20px;
   list-style-type: disc;
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 a {
@@ -106,13 +108,13 @@ a:hover {
 .open-source .project-list {
   list-style: none;
   padding-left: 0;
-  margin: 1rem 0 0;
+  margin: 0;
   display: grid;
-  gap: 1rem;
+  gap: 0rem;
 }
 
 .open-source .project-list h3 {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0rem;
 }
 
 .open-source .project-list p {
