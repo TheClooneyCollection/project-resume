@@ -199,7 +199,7 @@ a:hover {
     .page {
         box-shadow: none;
         margin: 0 auto;
-        padding: 20mm;
+        padding: 10mm;
         width: 100%;
         min-height: auto;
     }
@@ -207,5 +207,5 @@ a:hover {
 
 @page {
     size: A4;
-    margin: 12mm;
+    margin: 10mm;
 }
