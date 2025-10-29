@@ -2,6 +2,11 @@
 
 Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/). Resume content lives in YAML, is rendered with Nunjucks templates, and styled for both screen and print layouts.
 
+https://project-resume-f5j.pages.dev/
+
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/fe81255d-edb5-4722-a914-201da1a18f40" />
+
+
 ## Quick Start
 1. Install dependencies: `npm install`
 2. Launch the development server: `npm run dev`, then open `http://localhost:8080`
