@@ -5,7 +5,7 @@ Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/)
 ## Quick Start
 1. Install dependencies: `npm install`
 2. Launch the development server: `npm run dev`, then open `http://localhost:8080`
-3. Build the static output: `npm run build` (artifacts land in `_site/`)
+3. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
 
 ## Project Structure
 - `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
@@ -23,8 +23,9 @@ Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/)
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
 ## PDF Export
-- In the browser preview, use the “Download PDF” button (or `⌘/Ctrl + P`) to open the print dialog.
-- Disable browser-supplied headers/footers if you want a clean PDF (Chrome: *More Settings → Headers and footers*).
+- Running `npm run build` triggers `generate-pdf.js`, which serves `_site/` locally and captures `_site/resume.pdf` with Puppeteer.
+- The “Download PDF” button links directly to `/resume.pdf`; make sure the build completed so the file exists.
+- When printing manually, disable browser-supplied headers/footers if you want a clean PDF (Chrome: *More Settings → Headers and footers*).
 - Ensure print margins remain at the defaults defined in CSS (`12mm` via `@page`).
 
 ## Verification Checklist

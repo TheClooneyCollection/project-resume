@@ -3,13 +3,14 @@
 ## Project Structure & Module Organization
 - Root contains `.eleventy.js` (Eleventy config) and `package.json` for scripts and dependencies.
 - `_data/cv.yaml` holds resume content; treat it as the single source of truth for personal data.
-- `_includes/layout.njk` defines the global page shell; `index.njk` renders the CV body.
+- `_includes/layout.njk` defines the global page shell (download link, print trigger, metadata); `index.njk` renders the CV body.
+- `generate-pdf.js` serves the built site and captures `_site/resume.pdf` via Puppeteer after the Eleventy build completes.
 - `css/base.css` defines shared typography and page scaffolding, `css/display.css` manages the screen chrome, `css/sections.css` handles section-specific styling, and `css/print.css` captures print overrides and page sizing. Keep additional assets (fonts, icons) under `css/` or create an `assets/` directory if needed.
 - `.eleventyignore` excludes planning artefacts; `.gitignore` keeps build and dependency folders out of version control.
 
 ## Build, Test, and Development Commands
 - `npm run dev` — Starts Eleventy’s local server with live reload. Visit `http://localhost:8080` for previews.
-- `npm run build` — Generates the static site into `_site/`. Always run before publishing or exporting PDFs.
+- `npm run build` — Generates the static site into `_site/` and runs `generate-pdf.js`, which spins up a local server (port 8090) to capture `_site/resume.pdf`. Ensure the port is free before running.
 - Manual check: after `npm run build`, open `_site/index.html` in a browser to confirm layout integrity.
 
 ## Coding Style & Naming Conventions
