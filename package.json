@@ -15,5 +15,8 @@
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
     "js-yaml": "^4.1.0"
+  },
+  "dependencies": {
+    "puppeteer": "^24.27.0"
   }
 }
