@@ -10,7 +10,7 @@
 
 ## Build, Test, and Development Commands
 - `npm run dev` — Starts Eleventy’s local server with live reload. Visit `http://localhost:8080` for previews.
-- `npm run build` — Generates the static site into `_site/` and runs `generate-pdf.js`, which spins up a local server (port 8090) to capture `_site/resume.pdf`. Ensure the port is free before running.
+- `npm run build` — Generates the static site into `_site/` and runs `generate-pdf.js`, which spins up a local server on an available port to capture `_site/resume.pdf`. The port is assigned at runtime.
 - Manual check: after `npm run build`, open `_site/index.html` in a browser to confirm layout integrity.
 
 ## Coding Style & Naming Conventions

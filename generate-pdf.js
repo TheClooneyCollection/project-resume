@@ -4,7 +4,6 @@ const http = require("http");
 const handler = require("serve-handler");
 const puppeteer = require("puppeteer");
 
-const PORT = 8090;
 const siteRoot = path.resolve(__dirname, "_site");
 const outputPdf = path.join(siteRoot, "resume.pdf");
 const resumeHtmlPath = path.join(siteRoot, "index.html");
@@ -32,29 +31,40 @@ function startServer() {
     );
 
     server.on("error", reject);
-    server.listen(PORT, () => resolve(server));
+    server.listen(0, "127.0.0.1", () => {
+      const address = server.address();
+      if (!address || typeof address !== "object") {
+        reject(new Error("Failed to determine static server port"));
+        return;
+      }
+      resolve({ server, port: address.port });
+    });
   });
 }
 
 async function generatePdf() {
   ensureBuildExists();
   let server;
+  let port;
   let browser;
+  let page;
 
   try {
-    server = await startServer();
+    const started = await startServer();
+    server = started.server;
+    port = started.port;
     logPdf(
       [
         "Serving static build",
         gray("from"),
         gray(relativeSiteRoot),
         gray("at"),
-        gray(`http://localhost:${PORT}/`),
+        gray(`http://localhost:${port}/`),
       ].join(" ")
     );
     browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(`http://localhost:${PORT}/`, { waitUntil: "networkidle0" });
+    page = await browser.newPage();
+    await page.goto(`http://localhost:${port}/`, { waitUntil: "networkidle0" });
     await page.pdf({
       path: outputPdf,
       printBackground: true,
@@ -62,11 +72,15 @@ async function generatePdf() {
     });
     logPdf(`Captured resume PDF ${gray("at")} ${gray(relativeOutputPdf)}`);
   } finally {
+    if (page) {
+      await page.close();
+    }
     if (browser) {
       await browser.close();
     }
     if (server) {
       await new Promise((resolve) => server.close(resolve));
+      logPdf(`Closed static server on port ${gray(port || "unknown")}`);
     }
   }
 }
