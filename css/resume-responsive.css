@@ -140,7 +140,7 @@ a:hover {
 }
 
 .contact-list li {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.4rem;
   color: var(--text-muted);
@@ -291,9 +291,15 @@ a:hover {
 }
 
 @media (min-width: 640px) {
-  .intro {
-    grid-template-columns: 2fr 1fr;
-    align-items: start;
+  .intro__heading {
+    gap: 1rem;
+  }
+
+  .contact-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
   }
 
   .skills-grid {

@@ -6,25 +6,25 @@ permalink: responsive/index.html
 <section class="intro">
   <div class="intro__heading">
     <h1 class="intro__name">{{ cv.name }}</h1>
+    <ul class="contact-list">
+      <li>
+        <a href="mailto:{{ cv.contact.email }}">
+          {{ cv.contact.email }}
+        </a>
+      </li>
+      <li>
+        <a href="tel:{{ cv.contact.phone | replace(' ', '') | replace('(', '') | replace(')', '') }}">
+          {{ cv.contact.phone }}
+        </a>
+      </li>
+      <li>
+        <a href="{{ cv.contact.website }}" target="_blank" rel="noopener">
+          {{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        </a>
+      </li>
+    </ul>
     <p class="intro__summary">{{ cv.summary }}</p>
   </div>
-  <ul class="contact-list">
-    <li>
-      <a href="mailto:{{ cv.contact.email }}">
-        {{ cv.contact.email }}
-      </a>
-    </li>
-    <li>
-      <a href="tel:{{ cv.contact.phone | replace(' ', '') | replace('(', '') | replace(')', '') }}">
-        {{ cv.contact.phone }}
-      </a>
-    </li>
-    <li>
-      <a href="{{ cv.contact.website }}" target="_blank" rel="noopener">
-        {{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
-      </a>
-    </li>
-  </ul>
 </section>
 
 {% if cv.skills %}
