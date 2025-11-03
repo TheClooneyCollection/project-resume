@@ -28,6 +28,7 @@ https://project-resume-f5j.pages.dev/
 - `css/sections.css` — styling for the individual resume sections and typography.
 - `css/print.css` — print-only overrides plus `@page` sizing.
 - `css/resume-responsive.css` — responsive-only styling for the alternate preview page.
+- `scripts/generate-pdf.js` — Puppeteer helper that captures `_site/resume.pdf` after each build.
 - `.eleventy.js` — Eleventy configuration enabling YAML data loading and stylesheet passthrough.
 
 ## Customization
@@ -36,7 +37,7 @@ https://project-resume-f5j.pages.dev/
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
 ## PDF Export
-- Running `npm run build` triggers `generate-pdf.js`, which temporarily serves `_site/` on an ephemeral localhost port and captures `_site/resume.pdf` with Puppeteer.
+- Running `npm run build` triggers `scripts/generate-pdf.js`, which temporarily serves `_site/` on an ephemeral localhost port and captures `_site/resume.pdf` with Puppeteer.
 - The “Download PDF” button links directly to `/resume.pdf`; make sure the build completed so the file exists.
 - When printing manually, disable browser-supplied headers/footers if you want a clean PDF (Chrome: *More Settings → Headers and footers*).
 - Ensure print margins remain at the defaults defined in CSS (`12mm` via `@page`).

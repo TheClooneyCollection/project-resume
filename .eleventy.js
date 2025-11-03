@@ -8,7 +8,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.on("eleventy.after", () => {
     return new Promise((resolve, reject) => {
-      exec("node generate-pdf.js", (error, stdout, stderr) => {
+      exec("node scripts/generate-pdf.js", (error, stdout, stderr) => {
         if (stdout) {
           console.log(stdout);
         }

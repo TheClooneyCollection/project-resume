@@ -4,10 +4,10 @@ const http = require("http");
 const handler = require("serve-handler");
 const puppeteer = require("puppeteer");
 
-const siteRoot = path.resolve(__dirname, "_site");
+const projectRoot = path.resolve(__dirname, "..");
+const siteRoot = path.join(projectRoot, "_site");
 const outputPdf = path.join(siteRoot, "resume.pdf");
 const resumeHtmlPath = path.join(siteRoot, "index.html");
-const projectRoot = __dirname;
 const relativeSiteRoot = path.relative(projectRoot, siteRoot) || ".";
 const relativeOutputPdf = path.relative(projectRoot, outputPdf) || "resume.pdf";
 const relativeResumeHtml = path.relative(projectRoot, resumeHtmlPath) || "index.html";
