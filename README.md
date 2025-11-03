@@ -21,8 +21,8 @@ https://project-resume-f5j.pages.dev/
 - `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
 - `_includes/layout-responsive.njk` — alternate layout with mobile-first chrome for on-screen review.
-- `index.njk` — page template that renders sections using the YAML data.
-- `responsive.njk` — responsive resume view rendered at `/responsive/` for mobile and desktop previews.
+- `src/index.njk` — page template that renders sections using the YAML data.
+- `src/responsive.njk` — responsive resume view rendered at `/responsive/` for mobile and desktop previews.
 - `css/base.css` — shared typography and page scaffolding for screen and print.
 - `css/display.css` — screen-focused layout enhancements and interactive chrome.
 - `css/sections.css` — styling for the individual resume sections and typography.
@@ -32,7 +32,7 @@ https://project-resume-f5j.pages.dev/
 
 ## Customization
 - Edit `_data/cv.yaml` to adjust content. Keep entries chronological (newest first) to match the rendered order.
-- Modify or add sections in `index.njk` to reflect additional resume components (e.g., awards, speaking).
+- Modify or add sections in `src/index.njk` to reflect additional resume components (e.g., awards, speaking).
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
 ## PDF Export
