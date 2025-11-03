@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ cv.name }} - Responsive CV</title>
+  <link rel="stylesheet" href="/css/resume-responsive.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="top-bar">
+      <div class="top-bar__links">
+        <a class="download-link" href="/resume.pdf">Download PDF</a>
+        <a class="print-link" href="#" onclick="window.print(); return false;">Print</a>
+        <a class="original-link" href="/">PDF layout view</a>
+      </div>
+    </header>
+    <main class="page-content">
+      {{ content | safe }}
+    </main>
+  </div>
+</body>
+</html>

@@ -12,14 +12,22 @@ https://project-resume-f5j.pages.dev/
 2. Launch the development server: `npm run dev`, then open `http://localhost:8080`
 3. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
 
+## Responsive Preview
+- Launch the dev server and open `http://localhost:8080/responsive/` for a mobile-friendly layout.
+- The top bar links let you jump back to the PDF-focused view, print directly, or grab the generated PDF.
+- The page styles live in `css/resume-responsive.css`; tweak spacing or breakpoints here when iterating.
+
 ## Project Structure
 - `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
+- `_includes/layout-responsive.njk` — alternate layout with mobile-first chrome for on-screen review.
 - `index.njk` — page template that renders sections using the YAML data.
+- `responsive.njk` — responsive resume view rendered at `/responsive/` for mobile and desktop previews.
 - `css/base.css` — shared typography and page scaffolding for screen and print.
 - `css/display.css` — screen-focused layout enhancements and interactive chrome.
 - `css/sections.css` — styling for the individual resume sections and typography.
 - `css/print.css` — print-only overrides plus `@page` sizing.
+- `css/resume-responsive.css` — responsive-only styling for the alternate preview page.
 - `.eleventy.js` — Eleventy configuration enabling YAML data loading and stylesheet passthrough.
 
 ## Customization
