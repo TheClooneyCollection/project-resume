@@ -6,8 +6,11 @@ permalink: print_preview/index.html
 <header>
     <h1>{{ cv.name }}</h1>
     <div class="contact-info">
-        <span><a href="mailto:{{ cv.contact.email }}">{{ cv.contact.email }}</a></span>
-        <span><a href="tel:{{ cv.contact.phone | replace(' ', '') | replace('(', '') | replace(')', '') }}">{{ cv.contact.phone }}</a></span>
+        {% set contactEmail = (contact and contact.email) or '' %}
+        {% set contactPhone = (contact and contact.phone) or '' %}
+        {% set contactPhoneHref = contactPhone | replace(' ', '') | replace('(', '') | replace(')', '') %}
+        {% if contactEmail %}<span><a href="mailto:{{ contactEmail }}">{{ contactEmail }}</a></span>{% endif %}
+        {% if contactPhone %}<span><a href="tel:{{ contactPhoneHref }}">{{ contactPhone }}</a></span>{% endif %}
         <span><a href="{{ cv.contact.website }}" target="_blank" rel="noopener">{{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
     </div>
 </header>
