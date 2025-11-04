@@ -3,7 +3,7 @@
 ## Project Structure & Module Organization
 - Root contains `.eleventy.js` (Eleventy config) and `package.json` for scripts and dependencies.
 - `_data/cv.yaml` holds resume content; treat it as the single source of truth for personal data.
-- `_includes/layout.njk` defines the global page shell (download link, print trigger, metadata); `src/index.njk` renders the CV body and `src/responsive.njk` provides the responsive preview.
+- `_includes/layout.njk` defines the global page shell (download link, print trigger, metadata); `src/print_preview.njk` renders the print-focused CV and `src/index.njk` provides the responsive preview.
 - `scripts/generate-pdf.js` serves the built site and captures `_site/resume.pdf` via Puppeteer after the Eleventy build completes.
 - `css/base.css` defines shared typography and page scaffolding, `css/display.css` manages the screen chrome, `css/sections.css` handles section-specific styling, and `css/print.css` captures print overrides and page sizing. Keep additional assets (fonts, icons) under `css/` or create an `assets/` directory if needed.
 - `.eleventyignore` excludes planning artefacts; `.gitignore` keeps build and dependency folders out of version control.

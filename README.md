@@ -13,16 +13,16 @@ https://project-resume-f5j.pages.dev/
 3. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
 
 ## Responsive Preview
-- Launch the dev server and open `http://localhost:8080/responsive/` for a mobile-friendly layout.
-- The top bar links let you jump back to the PDF-focused view, print directly, or grab the generated PDF.
+- Launch the dev server and open `http://localhost:8080/` for the mobile-friendly layout.
+- Use the top bar links to jump to the print-focused view at `/print_preview/`, print directly, or grab the generated PDF.
 - The page styles live in `css/resume-responsive.css`; tweak spacing or breakpoints here when iterating.
 
 ## Project Structure
 - `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
-- `_includes/layout-responsive.njk` — alternate layout with mobile-first chrome for on-screen review.
-- `src/index.njk` — page template that renders sections using the YAML data.
-- `src/responsive.njk` — responsive resume view rendered at `/responsive/` for mobile and desktop previews.
+- `_includes/layout-responsive.njk` — mobile-first chrome used by the responsive on-screen review.
+- `src/index.njk` — responsive resume view rendered at `/` for mobile and desktop previews.
+- `src/print_preview.njk` — print-optimized resume view rendered at `/print_preview/`.
 - `css/base.css` — shared typography and page scaffolding for screen and print.
 - `css/display.css` — screen-focused layout enhancements and interactive chrome.
 - `css/sections.css` — styling for the individual resume sections and typography.

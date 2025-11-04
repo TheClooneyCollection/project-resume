@@ -7,10 +7,11 @@ const puppeteer = require("puppeteer");
 const projectRoot = path.resolve(__dirname, "..");
 const siteRoot = path.join(projectRoot, "_site");
 const outputPdf = path.join(siteRoot, "resume.pdf");
-const resumeHtmlPath = path.join(siteRoot, "index.html");
+const printPreviewHtmlPath = path.join(siteRoot, "print_preview", "index.html");
 const relativeSiteRoot = path.relative(projectRoot, siteRoot) || ".";
 const relativeOutputPdf = path.relative(projectRoot, outputPdf) || "resume.pdf";
-const relativeResumeHtml = path.relative(projectRoot, resumeHtmlPath) || "index.html";
+const relativePrintPreviewHtml =
+  path.relative(projectRoot, printPreviewHtmlPath) || path.join("print_preview", "index.html");
 const gray = (text) => `\x1b[90m${text}\x1b[39m`;
 const logPdf = (message) => console.log(`${gray("[pdf]")} ${message}`);
 
@@ -19,8 +20,10 @@ function ensureBuildExists() {
     throw new Error(`Build output directory missing at ${relativeSiteRoot}. Run "npm run build" first.`);
   }
 
-  if (!fs.existsSync(resumeHtmlPath)) {
-    throw new Error(`Unable to find built resume at ${relativeResumeHtml}. Run "npm run build" first.`);
+  if (!fs.existsSync(printPreviewHtmlPath)) {
+    throw new Error(
+      `Unable to find print preview at ${relativePrintPreviewHtml}. Run "npm run build" first.`,
+    );
   }
 }
 
@@ -64,7 +67,7 @@ async function generatePdf() {
     );
     browser = await puppeteer.launch();
     page = await browser.newPage();
-    await page.goto(`http://localhost:${port}/`, { waitUntil: "networkidle0" });
+    await page.goto(`http://localhost:${port}/print_preview/`, { waitUntil: "networkidle0" });
     await page.pdf({
       path: outputPdf,
       printBackground: true,
