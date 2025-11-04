@@ -19,7 +19,16 @@ permalink: print_preview/index.html
     <p>{{ cv.summary }}</p>
 </section>
 
-{% if cv.skills %}
+{% set sectionsConfig = cv.sections or {} %}
+{% set enabledSections = sectionsConfig.enabled or [] %}
+{% set disabledSections = sectionsConfig.disabled or [] %}
+{% set hasEnabledOverrides = (enabledSections | length) > 0 %}
+{% set showSkills = ('skills' not in disabledSections) and (not hasEnabledOverrides or 'skills' in enabledSections) %}
+{% set showExperience = ('experiences' not in disabledSections) and (not hasEnabledOverrides or 'experiences' in enabledSections) %}
+{% set showProjects = ('projects' not in disabledSections) and (not hasEnabledOverrides or 'projects' in enabledSections) %}
+{% set showInterests = ('interests' not in disabledSections) and (not hasEnabledOverrides or 'interests' in enabledSections) %}
+
+{% if showSkills and cv.skills %}
 <section class="skills">
     <h2>Core Skills</h2>
     <div class="skills-grid">
@@ -37,6 +46,7 @@ permalink: print_preview/index.html
 </section>
 {% endif %}
 
+{% if showExperience and cv.experience %}
 <section class="professional-experience">
     <h2>Professional Experience</h2>
     {% for job in cv.experience %}
@@ -58,8 +68,9 @@ permalink: print_preview/index.html
     </div>
     {% endfor %}
 </section>
+{% endif %}
 
-{% if cv.openSourceProjects %}
+{% if showProjects and cv.openSourceProjects %}
 <section class="open-source">
     <h2>Open Source Projects</h2>
     <ul class="project-list">
@@ -73,7 +84,7 @@ permalink: print_preview/index.html
 </section>
 {% endif %}
 
-{% if cv.interests %}
+{% if showInterests and cv.interests %}
 <section class="interests">
     <h2>Interests</h2>
     <ul>
