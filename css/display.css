@@ -29,6 +29,9 @@ body {
   display: inline-flex;
   align-items: center;
 }
+.download-actions .download-link + .download-link {
+  margin-left: 0.75rem;
+}
 
 .download-actions .download-link:hover {
   transform: translateY(-1px);
