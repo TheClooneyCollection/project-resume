@@ -92,11 +92,28 @@ permalink: print_preview/index.html
 <section class="open-source">
     <h2>Open Source Projects</h2>
     <ul class="project-list">
+        {% set currentEnvironment = environment or 'development' %}
+        {% set shouldFilter = currentEnvironment == 'development' %}
+        {% set includedTags = (cv.tags and cv.tags.included) or [] %}
+        {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+        {% set includedSet = includedTags | toSet %}
+        {% set excludedSet = excludedTags | toSet %}
+        {% set includeAllTags = includedSet.has('all') %}
         {% for project in cv.openSourceProjects %}
+        {% set projectTags = project.tags or [] %}
+        {% set projectSet = projectTags | toSet %}
+        {% set shouldRender = true %}
+        {% if shouldFilter %}
+            {% set isExcluded = projectSet.intersection(excludedSet).size > 0 %}
+            {% set matchesIncluded = includeAllTags or projectSet.intersection(includedSet).size > 0 %}
+            {% set shouldRender = (not isExcluded) and matchesIncluded %}
+        {% endif %}
+        {% if shouldRender %}
         <li>
             <h3><a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a></h3>
             <p>{{ project.description }}</p>
         </li>
+        {% endif %}
         {% endfor %}
     </ul>
 </section>

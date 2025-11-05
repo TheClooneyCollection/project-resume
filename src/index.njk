@@ -114,8 +114,23 @@ permalink: index.html
     <h2>Open Source Projects</h2>
   </div>
   <div class="card-grid">
+    {% set currentEnvironment = environment or 'development' %}
+    {% set shouldFilter = currentEnvironment == 'development' %}
+    {% set includedTags = (cv.tags and cv.tags.included) or [] %}
+    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+    {% set includedSet = includedTags | toSet %}
+    {% set excludedSet = excludedTags | toSet %}
+    {% set includeAllTags = includedSet.has('all') %}
     {% for project in cv.openSourceProjects %}
-    <article class="card-grid__item">
+    {% set projectTags = project.tags or [] %}
+    {% set projectSet = projectTags | toSet %}
+    {% set isIncluded = true %}
+    {% if shouldFilter %}
+      {% set isExcluded = projectSet.intersection(excludedSet).size > 0 %}
+      {% set matchesIncluded = includeAllTags or projectSet.intersection(includedSet).size > 0 %}
+      {% set isIncluded = (not isExcluded) and matchesIncluded %}
+    {% endif %}
+    <article class="card-grid__item{% if not isIncluded %} card-grid__item--excluded{% endif %}">
       <h3><a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a></h3>
       <p>{{ project.description }}</p>
     </article>

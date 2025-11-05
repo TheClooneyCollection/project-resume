@@ -295,6 +295,10 @@ a:hover {
   color: var(--text-muted);
 }
 
+.card-grid__item--excluded {
+  opacity: 0.45;
+}
+
 @media (min-width: 640px) {
   .intro__heading {
     gap: 1rem;
