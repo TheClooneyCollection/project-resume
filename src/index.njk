@@ -64,6 +64,7 @@ permalink: index.html
   </div>
   <ol class="experience-list">
     {% set includedTags = (cv.tags and cv.tags.included) or [] %}
+    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
     {% set includeAllTags = 'all' in includedTags %}
     {% for job in cv.experience %}
     <li class="experience-list__item">
@@ -87,7 +88,8 @@ permalink: index.html
         {% for item in job.achievements %}
         {% set achievementText = item.text or item %}
         {% set achievementTags = item.tags or [] %}
-        {% set isIncluded = includeAllTags or (achievementTags | hasIntersection(includedTags)) %}
+        {% set isExcluded = achievementTags | hasIntersection(excludedTags) %}
+        {% set isIncluded = (not isExcluded) and (includeAllTags or (achievementTags | hasIntersection(includedTags))) %}
         <li class="experience-list__achievement{% if not isIncluded %} experience-list__achievement--excluded{% endif %}">{{ achievementText }}</li>
         {% endfor %}
       </ul>
