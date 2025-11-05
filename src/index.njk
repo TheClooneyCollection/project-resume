@@ -87,14 +87,7 @@ permalink: index.html
         {% for item in job.achievements %}
         {% set achievementText = item.text or item %}
         {% set achievementTags = item.tags or [] %}
-        {% set isIncluded = includeAllTags %}
-        {% if not isIncluded and includedTags and achievementTags %}
-          {% for tag in achievementTags %}
-            {% if tag in includedTags %}
-              {% set isIncluded = true %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
+        {% set isIncluded = includeAllTags or (achievementTags | hasIntersection(includedTags)) %}
         <li class="experience-list__achievement{% if not isIncluded %} experience-list__achievement--excluded{% endif %}">{{ achievementText }}</li>
         {% endfor %}
       </ul>
