@@ -5,20 +5,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
   eleventyConfig.addDataExtension("yml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy("css");
-  eleventyConfig.addFilter("hasIntersection", (first = [], second = []) => {
-    if (!Array.isArray(first) || !Array.isArray(second)) {
-      return false;
+  eleventyConfig.addFilter("toSet", (items = []) => {
+    if (!Array.isArray(items)) {
+      return new Set();
     }
-    if (!first.length || !second.length) {
-      return false;
-    }
-    const firstSet = new Set(first);
-    for (const value of second) {
-      if (firstSet.has(value)) {
-        return true;
-      }
-    }
-    return false;
+    return new Set(items);
   });
 
   eleventyConfig.on("eleventy.after", () => {
