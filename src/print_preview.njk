@@ -61,7 +61,7 @@ permalink: print_preview/index.html
     {% set includeAllTags = includedSet.has('all') %}
     {% for job in cv.experience %}
     <div class="job">
-        <div class="job-header">
+        <div class="job-header{% if job.pageBreakBefore %} page-break-before{% endif %}">
             <h3>
                 {{ job.title }}{% if job.company %} &middot; {{ job.company }}{% endif %}{% if job.location %} &middot; {{ job.location }}{% endif %}
             </h3>

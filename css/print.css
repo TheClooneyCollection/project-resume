@@ -4,6 +4,11 @@
     padding: 0;
   }
 
+  .job-header.page-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+
   .download-actions {
     display: none;
   }
