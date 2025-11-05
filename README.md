@@ -2,7 +2,7 @@
 
 Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/) that automatically captures a shareable PDF during `npm run build/dev`. Resume content lives in YAML, is rendered with Nunjucks templates, and styled for both screen and print layouts.
 
-https://project-resume-f5j.pages.dev/
+https://resume.nicholas.clooney.io/
 
 <img width="500" alt="image" src="https://github.com/user-attachments/assets/fe81255d-edb5-4722-a914-201da1a18f40" />
 
