@@ -49,6 +49,13 @@ permalink: print_preview/index.html
 {% if showExperience and cv.experience %}
 <section class="professional-experience">
     <h2>Professional Experience</h2>
+    {% set currentEnvironment = environment or 'development' %}
+    {% set shouldFilter = currentEnvironment == 'development' %}
+    {% set includedTags = (cv.tags and cv.tags.included) or [] %}
+    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+    {% set includedSet = includedTags | toSet %}
+    {% set excludedSet = excludedTags | toSet %}
+    {% set includeAllTags = includedSet.has('all') %}
     {% for job in cv.experience %}
     <div class="job">
         <div class="job-header">
@@ -63,7 +70,17 @@ permalink: print_preview/index.html
         <ul>
             {% for item in job.achievements %}
             {% set achievementText = item.text or item %}
+            {% set achievementTags = item.tags or [] %}
+            {% set achievementSet = achievementTags | toSet %}
+            {% set shouldRender = true %}
+            {% if shouldFilter %}
+              {% set isExcluded = achievementSet.intersection(excludedSet).size > 0 %}
+              {% set matchesIncluded = includeAllTags or achievementSet.intersection(includedSet).size > 0 %}
+              {% set shouldRender = (not isExcluded) and matchesIncluded %}
+            {% endif %}
+            {% if shouldRender %}
             <li>{{ achievementText }}</li>
+            {% endif %}
             {% endfor %}
         </ul>
     </div>
