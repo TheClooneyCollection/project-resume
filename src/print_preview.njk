@@ -12,6 +12,9 @@ permalink: print_preview/index.html
         {% if contactEmail %}<span><a href="mailto:{{ contactEmail }}">{{ contactEmail }}</a></span>{% endif %}
         {% if contactPhone %}<span><a href="tel:{{ contactPhoneHref }}">{{ contactPhone }}</a></span>{% endif %}
         <span><a href="{{ cv.contact.website }}" target="_blank" rel="noopener">{{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
+        {% if cv.contact.resume %}
+        <span class="contact-resume">View full resume at <a href="{{ cv.contact.resume }}" target="_blank" rel="noopener">{{ cv.contact.resume | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
+        {% endif %}
     </div>
 </header>
 
