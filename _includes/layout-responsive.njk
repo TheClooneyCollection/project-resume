@@ -1,3 +1,5 @@
+{% set currentEnvironment = environment or 'development' %}
+{% set umami = umamiTracking or {} %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ cv.name }} - Responsive CV</title>
   <link rel="stylesheet" href="/css/resume-responsive.css">
+  {% if currentEnvironment == 'production' and umami.enabled %}
+  <script defer src="{{ umami.scriptSrc }}" data-website-id="{{ umami.websiteId }}"></script>
+  {% endif %}
 </head>
 <body>
   <div class="page-shell">
-    {% set currentEnvironment = environment or 'development' %}
     {% if currentEnvironment != 'production' %}
     <header class="top-bar">
       <div class="top-bar__links">
