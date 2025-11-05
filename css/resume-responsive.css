@@ -256,8 +256,13 @@ a:hover {
   list-style: disc;
 }
 
-.experience-list__achievements li {
+.experience-list__achievement {
   color: var(--text-muted);
+  transition: opacity 0.2s ease;
+}
+
+.experience-list__achievement--excluded {
+  opacity: 0.45;
 }
 
 .card-grid {

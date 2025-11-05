@@ -62,7 +62,8 @@ permalink: print_preview/index.html
         {% endif %}
         <ul>
             {% for item in job.achievements %}
-            <li>{{ item }}</li>
+            {% set achievementText = item.text or item %}
+            <li>{{ achievementText }}</li>
             {% endfor %}
         </ul>
     </div>
