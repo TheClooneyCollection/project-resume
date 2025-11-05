@@ -11,6 +11,10 @@ module.exports = function (eleventyConfig) {
     }
     return new Set(items);
   });
+  eleventyConfig.addGlobalData(
+    "environment",
+    process.env.ELEVENTY_ENV || "development",
+  );
 
   eleventyConfig.on("eleventy.after", () => {
     return new Promise((resolve, reject) => {

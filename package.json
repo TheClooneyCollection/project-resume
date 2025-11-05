@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "eleventy",
-    "dev": "eleventy --serve",
+    "dev": "ELEVENTY_ENV=development eleventy --serve",
+    "prod": "ELEVENTY_ENV=production eleventy --serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

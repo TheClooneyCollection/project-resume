@@ -63,6 +63,8 @@ permalink: index.html
     <h2>Professional Experience</h2>
   </div>
   <ol class="experience-list">
+    {% set currentEnvironment = environment or 'development' %}
+    {% set shouldFilter = currentEnvironment == 'development' %}
     {% set includedTags = (cv.tags and cv.tags.included) or [] %}
     {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
     {% set includedSet = includedTags | toSet %}
@@ -91,8 +93,12 @@ permalink: index.html
         {% set achievementText = item.text or item %}
         {% set achievementTags = item.tags or [] %}
         {% set achievementSet = achievementTags | toSet %}
-        {% set isExcluded = achievementSet.intersection(excludedSet).size > 0 %}
-        {% set isIncluded = (not isExcluded) and (includeAllTags or achievementSet.intersection(includedSet).size > 0) %}
+        {% set isIncluded = true %}
+        {% if shouldFilter %}
+          {% set isExcluded = achievementSet.intersection(excludedSet).size > 0 %}
+          {% set matchesIncluded = includeAllTags or achievementSet.intersection(includedSet).size > 0 %}
+          {% set isIncluded = (not isExcluded) and matchesIncluded %}
+        {% endif %}
         <li class="experience-list__achievement{% if not isIncluded %} experience-list__achievement--excluded{% endif %}">{{ achievementText }}</li>
         {% endfor %}
       </ul>
