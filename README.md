@@ -4,7 +4,13 @@ Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/)
 
 https://resume.nicholas.clooney.io/
 
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/fe81255d-edb5-4722-a914-201da1a18f40" />
+**Web**
+
+<img width="500" alt="Web Version" src="https://github.com/user-attachments/assets/7ccbbfde-5c2d-4dc3-9176-70434e9aaf08" />
+
+**PDF**
+
+<img width="500" alt="PDF Version" src="https://github.com/user-attachments/assets/a37ce781-f262-4e30-9fc8-5f11d68916d9" />
 
 
 ## Quick Start
