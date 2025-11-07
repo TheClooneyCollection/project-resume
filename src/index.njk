@@ -3,6 +3,8 @@ layout: layout-responsive.njk
 permalink: index.html
 ---
 
+{% set currentEnvironment = environment or 'development' %}
+
 <section class="intro">
   <div class="intro__heading">
     <h1 class="intro__name">{{ cv.name }}</h1>
@@ -10,14 +12,14 @@ permalink: index.html
       {% set contactEmail = (contact and contact.email) or '' %}
       {% set contactPhone = (contact and contact.phone) or '' %}
       {% set contactPhoneHref = contactPhone | replace(' ', '') | replace('(', '') | replace(')', '') %}
-      {% if contactEmail %}
+      {% if contactEmail and currentEnvironment != 'production' %}
       <li>
         <a href="mailto:{{ contactEmail }}">
           {{ contactEmail }}
         </a>
       </li>
       {% endif %}
-      {% if contactPhone %}
+      {% if contactPhone and currentEnvironment != 'production' %}
       <li>
         <a href="tel:{{ contactPhoneHref }}">
           {{ contactPhone }}
