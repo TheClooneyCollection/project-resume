@@ -21,16 +21,16 @@
       </div>
     </header>
     {% endif %}
-    <main class="page-content">
-      {{ content | safe }}
-    </main>
     {% if cv.contact and cv.contact.githubRepo %}
-    <footer class="page-shell__repo">
+    <div class="page-shell__repo">
       <a class="repo-link" href="{{ cv.contact.githubRepo }}" target="_blank" rel="noopener">
         View this project on GitHub
       </a>
-    </footer>
+    </div>
     {% endif %}
+    <main class="page-content">
+      {{ content | safe }}
+    </main>
   </div>
 </body>
 </html>
