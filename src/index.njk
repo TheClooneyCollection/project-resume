@@ -29,6 +29,20 @@ permalink: index.html
           {{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
         </a>
       </li>
+      {% if cv.contact.githubProfile %}
+      <li>
+        <a href="{{ cv.contact.githubProfile }}" target="_blank" rel="noopener">
+          {{ cv.contact.githubProfile | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        </a>
+      </li>
+      {% endif %}
+      {% if cv.contact.githubCollection %}
+      <li>
+        <a href="{{ cv.contact.githubCollection }}" target="_blank" rel="noopener">
+          {{ cv.contact.githubCollection | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        </a>
+      </li>
+      {% endif %}
     </ul>
     <p class="intro__summary">{{ cv.summary }}</p>
   </div>
