@@ -14,9 +14,10 @@ https://resume.nicholas.clooney.io/
 
 
 ## Quick Start
-1. Install dependencies: `npm install`
-2. Launch the development server: `npm run dev`, then open `http://localhost:8080`
-3. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
+1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details.
+2. Install dependencies: `npm install`
+3. Launch the development server: `npm run dev`, then open `http://localhost:8080`
+4. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
 
 ## Responsive Preview
 - Launch the dev server and open `http://localhost:8080/` for the mobile-friendly layout.
@@ -24,7 +25,8 @@ https://resume.nicholas.clooney.io/
 - The page styles live in `css/resume-responsive.css`; tweak spacing or breakpoints here when iterating.
 
 ## Project Structure
-- `_data/cv.yaml` — primary data source; update this file with your experience, skills, and links.
+- `_data/cv.yaml` — primary data source; copy it from the template and update the content with your experience, skills, and links.
+- `_data/cv.template.yaml` — reference template that mirrors the expected schema for `_data/cv.yaml`.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
 - `_includes/layout-responsive.njk` — mobile-first chrome used by the responsive on-screen review.
 - `src/index.njk` — responsive resume view rendered at `/` for mobile and desktop previews.
@@ -38,7 +40,7 @@ https://resume.nicholas.clooney.io/
 - `.eleventy.js` — Eleventy configuration enabling YAML data loading and stylesheet passthrough.
 
 ## Customization
-- Edit `_data/cv.yaml` to adjust content. Keep entries chronological (newest first) to match the rendered order.
+- Edit `_data/cv.yaml` (after copying from `_data/cv.template.yaml`) to adjust content. Keep entries chronological (newest first) to match the rendered order.
 - Modify or add sections in `src/index.njk` to reflect additional resume components (e.g., awards, speaking).
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
