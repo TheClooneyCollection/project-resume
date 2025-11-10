@@ -14,7 +14,7 @@ https://resume.nicholas.clooney.io/
 
 
 ## Quick Start
-1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details.
+1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details (or run `npm run link -- "<file-path>"` to symlink `_data/cv.yaml` to another YAML source).
 2. Install dependencies: `npm install`
 3. Launch the development server: `npm run dev`, then open `http://localhost:8080`
 4. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
@@ -43,6 +43,10 @@ https://resume.nicholas.clooney.io/
 - Edit `_data/cv.yaml` (after copying from `_data/cv.template.yaml`) to adjust content. Keep entries chronological (newest first) to match the rendered order.
 - Modify or add sections in `src/index.njk` to reflect additional resume components (e.g., awards, speaking).
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
+
+### Linking to an external CV source
+- Run `npm run link -- "<file-path>"` to replace `_data/cv.yaml` with a symlink that points to another YAML file (e.g., `npm run link -- "/Users/.../goodnotes-principal.cv.yaml"`).
+- The command removes any existing `_data/cv.yaml` before linking, so make sure you’ve already saved local edits you care about.
 
 ## PDF Export
 - Running `npm run build` triggers `scripts/generate-pdf.js`, which temporarily serves `_site/` on an ephemeral localhost port and captures `_site/resume.pdf` with Puppeteer.
