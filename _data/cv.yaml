@@ -25,13 +25,9 @@ contact:
   githubCollection: "https://github.com/TheClooneyCollection"
   githubRepo: "https://github.com/TheClooneyCollection/project-resume"
 summary: >
-  Principal-level iOS Architect with 10 years of experience
-  defining and evolving technical strategies for high-traffic,
-  scalable mobile applications & SDKs.
-  Proven expertise in driving architectural excellence, 
-  establishing best practices, and mentoring engineers to enhance product quality and performance.
-  Passionate about leading complex technical initiatives from conception to delivery in a collaborative,
-  cross-functional environment.
+  Lead Apple Platform Engineer with 10 years of experience crafting high-traffic Swift and SwiftUI apps on iOS and tvOS.
+  Specialized in scalable mobile architectures, automated testing, and ownership of CI/CD pipelines.
+  Collaborative technical leader who builds maintainable, testable components and empowers cross-functional teams to deliver impactful software.
 skills:
   - label: "Languages & Frameworks"
     items:
@@ -51,11 +47,6 @@ skills:
       - "SOLID"
       - "TDD / BDD"
       - "Clean & Composable Architecture"
-  - label: "Soft Skills"
-    items:
-        - Leadership & Mentorship
-        - Cross-Functional Collaboration
-        - Strategic Planning
   - label: "Tools"
     items:
       - "Ansible"
@@ -72,14 +63,13 @@ experience:
     endDate: "June 2025"
     pageBreakBefore: false
     summary: |
-      Directed the technical strategy for modernizing Streamotion's streaming apps' tvOS architecture
-      and spearheading the unification of the CI/CD pipeline
-      to elevate user experience and boost developer productivity, respectively.
+      Led development for Binge, Kayo, and Flash (streaming video services),
+      driving modernization by overhauling the core tvOS experience and
+      unifying the CI/CD pipeline across Streamotion's Apple platform.
     achievements:
       - text: |
-          Defined & led the re-architecture of the tvOS experience
-          with Focus Engine and modern UICollectionView,
-          significantly improving navigation fluidity and user satisfaction.
+          Redesigned the core tvOS experience with the native Focus Engine and
+          modern UICollectionView, significantly improving navigation fluidity and user satisfaction.
         tags:
           - design
           - architecture
@@ -233,7 +223,7 @@ experience:
           - design
       - text: |
           Led and coached a team of junior and mid-level engineers in Swift, SDK design,
-          and architectural best practices, fostering technical excellence and team autonomy.
+          and secure coding practices, conducting regular 1-on-1s and code reviews to foster technical growth and team autonomy.
         tags:
           - leadership
           - mentorship
@@ -301,12 +291,10 @@ openSourceProjects:
       - dev-ops
       - ansible
       - macos
-  # IGNORED... in pdf      
   - name: Project Lighthouse
     url: https://github.com/TheClooneyCollection/ansible-project-lighthouse
     description: Ansible playbook for a self-hosted server stack with Nginx, V2Ray, Certbot, Tailscale, and Umami analytics.
     tags:
-      - IGNORE
       - dev-ops
       - ansible
       - docker
@@ -328,7 +316,6 @@ openSourceProjects:
       - editors
       - git
       - tmux
-
 
 interests:
   - "Woodworking"
