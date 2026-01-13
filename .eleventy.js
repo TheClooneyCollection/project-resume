@@ -2,6 +2,7 @@ const { exec } = require("child_process");
 const yaml = require("js-yaml");
 
 module.exports = function (eleventyConfig) {
+  const environment = process.env.ELEVENTY_ENV || "development";
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
   eleventyConfig.addDataExtension("yml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy("css");
@@ -11,10 +12,14 @@ module.exports = function (eleventyConfig) {
     }
     return new Set(items);
   });
-  eleventyConfig.addGlobalData(
-    "environment",
-    process.env.ELEVENTY_ENV || "development",
-  );
+  eleventyConfig.addGlobalData("environment", environment);
+
+  eleventyConfig.on("eleventy.before", ({ runMode } = {}) => {
+    if (runMode && runMode !== "build") {
+      return;
+    }
+    console.log(`[Eleventy] Environment: ${environment}`);
+  });
 
   eleventyConfig.on("eleventy.after", () => {
     return new Promise((resolve, reject) => {
