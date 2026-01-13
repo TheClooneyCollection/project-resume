@@ -2,3 +2,5 @@
 node_modules/
 _site/
 _data/contact.yaml
+# cheeky sneaky cover letter
+src/cover_letter.md
