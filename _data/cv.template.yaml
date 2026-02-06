@@ -1,0 +1,324 @@
+sections:
+  enabled:
+    - skills
+    - experiences
+    - projects
+  disabled:
+    - interests
+
+tags:
+  included:
+    - apple
+    - leadership
+    - dev-ops
+    - testing
+    - dotfiles
+    - web
+  excluded:
+    - IGNORE
+
+name: "Nicholas Clooney"
+contact:
+  resume: "https://resume.nicholas.clooney.io/"
+  website: "https://blog.nicholas.clooney.io/"
+  githubProfile: "https://github.com/NicholasClooney"
+  githubCollection: "https://github.com/TheClooneyCollection"
+  githubRepo: "https://github.com/TheClooneyCollection/project-resume"
+summary: >
+  Lead Apple Platform Engineer with 10 years of experience crafting high-traffic Swift and SwiftUI apps on iOS and tvOS.
+  Specialized in scalable mobile architectures, automated testing, and ownership of CI/CD pipelines.
+  Collaborative technical leader who builds maintainable, testable components and empowers cross-functional teams to deliver impactful software.
+skills:
+  - label: "Languages & Frameworks"
+    items:
+      - "Swift"
+      - "SwiftUI"
+      - "UIKit"
+      - "Combine"
+      - "ReactiveSwift"
+      - "Python"
+      - "PyInvoke"
+      - "Kotlin"
+      - "TypeScript"
+  - label: "Software Practices"
+    items:
+      - "MVVM-C"
+      - "FRP"
+      - "SOLID"
+      - "TDD / BDD"
+      - "Clean & Composable Architecture"
+  - label: "Tools"
+    items:
+      - "Ansible"
+      - AI Assisted Development
+      - "Git"
+      - "Xcode"
+      - "Fastlane"
+      - "RESTful APIs"
+      - CI / CD Pipelines
+experience:
+  - title: "Senior Apple Platform Engineer"
+    company: "Streamotion"
+    startDate: "March 2023"
+    endDate: "June 2025"
+    pageBreakBefore: false
+    summary: |
+      Led development for Binge, Kayo, and Flash (streaming video services),
+      driving modernization by overhauling the core tvOS experience and
+      unifying the CI/CD pipeline across Streamotion's Apple platform.
+    achievements:
+      - text: |
+          Redesigned the core tvOS experience with the native Focus Engine and
+          modern UICollectionView, significantly improving navigation fluidity and user satisfaction.
+        tags:
+          - design
+          - architecture
+          - ux
+          - apple
+          - swift
+          - tvos
+          - focus-engine
+      - text: |
+          Drove technical strategy for unified CI/CD pipeline across apps, 
+          enabling the team to fully transition with zero friction, by
+          boosting developer productivity and confidence.
+        omitted:
+          - from legacy standalone repos 
+        tags:
+          - dev-ops
+          - ci-cd
+          - automation
+          - monorepo
+
+      - text: |
+          Spearheaded knowledge sharing on CI/CD and git best practices through dedicated sessions,
+          significantly improving team-wide adoption of new pipeline features.
+        tags:
+          - leadership
+          - mentorship
+
+      # IGNORED... in PDF
+      - text: |
+          Integrated Kayo into the unified monorepo,
+          navigating undocumented configurations and
+          aligning build tooling to enable consistent, multi-app development workflows.
+        tags:
+          - IGNORE
+
+          - dev-ops
+          - ci-cd
+          - monorepo
+          - integration
+          - tooling
+  - title: "Lead Apple Platform Engineer"
+    company: "Slyp"
+    startDate: "May 2022"
+    endDate: "February 2023"
+    pageBreakBefore: false
+    summary: |
+      Set a new technical direction for Slyp's Apple Platform SDK
+      by introducing a modern, test-driven architecture,
+      tripled delivery speed & established new standards for code quality.
+    achievements:
+      - text: |
+          Defined the technical strategy for the SDK
+          by leading the adoption of a modern architecture
+          with SwiftUI, Combine, and TCA,
+          which tripled feature delivery speed while maintaining 85% test coverage.
+        tags:
+          - design
+          - testing
+          - composable
+          - architecture
+          - TCA
+          - apple
+          - swift
+          - swiftui
+      - text: |
+          Created a clear path for technical decision-making
+          by leading cross-functional alignment workshops,
+          clarified requirements and reduced sign-off cycle times by 70%.
+        omitted:
+          -  on major banking integrations
+        tags:
+          - leadership
+          - collaboration
+          - integrations
+
+      # IGNORED in PDF
+      - text: |
+          Instituted mandatory CI checks,
+          increasing PR merge speed by 80% and cutting hot-fix rate by 60%.
+        tags:
+          - IGNORE
+          - dev-ops
+          - ci-cd
+          - quality
+          - process
+          - testing
+  - title: "Lead Apple Platform Engineer"
+    company: "Kasada"
+    startDate: "August 2019"
+    endDate: "May 2022"
+    pageBreakBefore: false
+    summary: |
+      Owned the end-to-end technical strategy and architecture for Kasada’s Apple Platform SDK,
+      creating a resilient, modular architecture to protect billions of monthly requests.
+    achievements:
+      - text: |
+          Set the long-term technical direction for the SDK by
+          designing a flexible, multi-instance architecture that
+          minimized integration overhead and supported future scalability,
+          serving as the sole architect from inception to production.
+        tags:
+          - design
+          - modular
+          - architecture
+          - sdk
+          - apple
+          - swift
+          - ios
+          - tvos
+      - text: |
+          Established the foundation for SDK quality and adoption by
+          architecting a completely testable system (95% coverage) and
+          authoring comprehensive documentation,
+          which eliminated support overhead and accelerated enterprise integration.
+        tags:
+          - testing
+          - design
+          - coverage
+          - documentation
+          - sdk
+      - text: |
+          Laid the groundwork for development best practices by
+          establishing a fully automated, platform-agnostic CI/CD pipeline
+          that enforced SDK test coverage and documentation standards,
+          ensuring consistent quality and reducing developer iteration time.
+        tags:
+          - dev-ops
+          - ci-cd
+          - automation
+          - platform-agnostic
+          - semantic-versioning
+          - process
+      - text: |
+          Participated in on-call rotation, managing incidents impacting global customers
+          and leading post-mortem analyses for sustained reliability improvements.
+        tags:
+          - dev-ops
+          - on-call
+          - operations
+          - incident-response
+          - leadership
+          - reliability
+      - text: |
+          Drove architectural alignment and mobile strategy
+          by authoring ADRs and leading cross-team reviews, mentoring engineers
+          through presentations and hands-on sessions.
+        tags:
+          - leadership
+          - mentorship
+          - architecture
+          - design
+      - text: |
+          Led and coached a team of junior and mid-level engineers in Swift, SDK design,
+          and secure coding practices, conducting regular 1-on-1s and code reviews to foster technical growth and team autonomy.
+        tags:
+          - leadership
+          - mentorship
+  - title: "Senior iOS Engineer"
+    company: "Domain"
+    startDate: "April 2016"
+    endDate: "July 2019"
+    pageBreakBefore: false
+    summary: |
+      Drove major product and platform initiatives for Australia’s top property search app, focusing on reusable, scalable, high business impact components, and owning CI/CD.
+    achievements:
+      - text: "Architected an in-app ads delivery engine generated millions in annual revenue."
+        omitted:
+          -  through targeted, reusable components.
+        tags:
+          - IGNORE
+          - apple
+          - swift
+          - design
+          - architecture
+          - revenue
+          - ads
+      - text: |
+          Led design of domain model layer for Search Results, achieving 100% crash-free rate.
+        tags:
+          - IGNORE
+          - apple
+          - swift
+          - design
+          - architecture
+          - quality
+          - stability
+
+      # IGNORED... in pdf
+      - text: "Introduced Behavior-Driven Development, reducing requirement churn by 30%."
+        tags:
+          - IGNORE
+          - testing
+          - design
+          - process
+          - bdd
+          - collaboration
+      # IGNORED... in pdf
+      - text: |
+          Owned CI/CD pipelines slashing build times by 45% and accelerating release cadence.
+        omitted:
+           -  and CI migration from CircleCI 1.0 to 2.0
+        tags:
+          - IGNORE
+          - dev-ops
+          - ci-cd
+          - migration
+          - performance
+openSourceProjects:
+  - name: "11ty-subspace-builder"
+    url: "https://github.com/TheClooneyCollection/11ty-subspace-builder"
+    description: "Warp-speed Eleventy blog starter featuring accessible navigation, responsive images, and automated social previews."
+    tags:
+      - eleventy
+      - web
+  - name: Ansible macOS Playbook
+    url: "https://github.com/TheClooneyCollection/ansible-macOS-playbook"
+    description: "Automates full macOS developer workstation provisioning end-to-end in minutes using Ansible."
+    tags:
+      - dev-ops
+      - ansible
+      - macos
+  - name: Project Lighthouse
+    url: https://github.com/TheClooneyCollection/ansible-project-lighthouse
+    description: Ansible playbook for a self-hosted server stack with Nginx, V2Ray, Certbot, Tailscale, and Umami analytics.
+    tags:
+      - dev-ops
+      - ansible
+      - docker
+  - name: Ansible Role For Umami
+    url: https://github.com/TheClooneyCollection/ansible-role-umami
+    description: Deploys the Umami analytics stack with Docker Compose, env-secret management, and proxy-friendly defaults.
+    tags:
+      - dev-ops
+      - ansible
+      - docker
+      - umami
+  - name: "dotfiles"
+    url: "https://github.com/TheClooneyCollection/dotfiles"
+    description: "Personal shell, editor, and OS configurations showcasing scripting fluency and a focus on developer ergonomics."
+    tags:
+      - dotfiles
+      - macos
+      - shell
+      - editors
+      - git
+      - tmux
+
+interests:
+  - "Woodworking"
+  - "Improv comedy"
+  - "Gaming"
+  - "Streaming on Twitch"

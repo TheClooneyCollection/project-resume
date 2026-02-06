@@ -5,6 +5,8 @@ module.exports = function (eleventyConfig) {
   const environment = process.env.ELEVENTY_ENV || "development";
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
   eleventyConfig.addDataExtension("yml", (contents) => yaml.load(contents));
+  eleventyConfig.ignores.add("_data/cv.yaml");
+  eleventyConfig.ignores.add("_data/cv.template.yaml");
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addFilter("toSet", (items = []) => {
     if (!Array.isArray(items)) {
@@ -18,7 +20,7 @@ module.exports = function (eleventyConfig) {
     if (runMode && runMode !== "build") {
       return;
     }
-    console.log(`[Eleventy] Environment: ${environment}`);
+    console.log(`\x1b[90m[resume] Environment: ${environment}\x1b[0m`);
   });
 
   eleventyConfig.on("eleventy.after", () => {
