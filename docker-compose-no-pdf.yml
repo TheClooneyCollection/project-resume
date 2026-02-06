@@ -1,5 +1,5 @@
 services:
-  resume-dev:
+  resume-dev-no-pdf:
     image: node:25-alpine
     working_dir: /app
     volumes:
@@ -13,7 +13,7 @@ services:
       - "127.0.0.1:8090:8080"
     command: >
       sh -lc "npm install && npm run dev:disable_pdf"
-  resume-prod:
+  resume-prod-no-pdf:
     image: node:25-alpine
     working_dir: /app
     volumes:
