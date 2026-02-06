@@ -15,9 +15,10 @@ https://resume.nicholas.clooney.io/
 
 ## Quick Start
 1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details (or run `npm run link -- "<file-path>"` to symlink `_data/cv.yaml` to another YAML source).
-2. Install dependencies: `npm install`
-3. Launch the development server: `npm run dev`, then open `http://localhost:8080`
-4. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
+2. Copy `_data/contact.example.yaml` to `_data/contact.yaml`, then update the email and phone values used in the print preview.
+3. Install dependencies: `npm install`
+4. Launch the development server: `npm run dev`, then open `http://localhost:8080`
+5. Build the static output: `npm run build` (artifacts land in `_site/`, including `_site/resume.pdf`)
 
 ## Responsive Preview
 - Launch the dev server and open `http://localhost:8080/` for the mobile-friendly layout.
@@ -46,6 +47,8 @@ https://resume.nicholas.clooney.io/
 ## Project Structure
 - `_data/cv.yaml` — primary data source; copy it from the template and update the content with your experience, skills, and links.
 - `_data/cv.template.yaml` — reference template that mirrors the expected schema for `_data/cv.yaml`.
+- `_data/contact.yaml` — email and phone values surfaced in the print preview header.
+- `_data/contact.example.yaml` — starter template for `_data/contact.yaml`.
 - `_includes/layout.njk` — base HTML frame, including print-friendly styles and the PDF trigger.
 - `_includes/layout-responsive.njk` — mobile-first chrome used by the responsive on-screen review.
 - `src/index.njk` — responsive resume view rendered at `/` for mobile and desktop previews.
