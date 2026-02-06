@@ -24,6 +24,15 @@ https://resume.nicholas.clooney.io/
 - Use the top bar links to jump to the print-focused view at `/print_preview/`, print directly, or grab the generated PDF.
 - The page styles live in `css/resume-responsive.css`; tweak spacing or breakpoints here when iterating.
 
+## Docker (No PDF)
+- Use `docker-compose-no-pdf.yml` to run Eleventy in Docker without installing Puppeteer.
+- Start the dev or prod service:
+  - `docker compose -f docker-compose-no-pdf.yml up resume-dev`
+  - `docker compose -f docker-compose-no-pdf.yml up resume-prod`
+- Or run both at once: `docker compose -f docker-compose-no-pdf.yml up`
+- Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
+- PDF generation is disabled via the `:disable_pdf` commands with `DISABLE_PDF=1` in the `package.json` file.
+
 ## Project Structure
 - `_data/cv.yaml` — primary data source; copy it from the template and update the content with your experience, skills, and links.
 - `_data/cv.template.yaml` — reference template that mirrors the expected schema for `_data/cv.yaml`.

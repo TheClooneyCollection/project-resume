@@ -1,8 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
-const handler = require("serve-handler");
-const puppeteer = require("puppeteer");
+const disablePdf = process.argv.includes("--disable-pdf");
 
 const projectRoot = path.resolve(__dirname, "..");
 const siteRoot = path.join(projectRoot, "_site");
@@ -27,7 +26,7 @@ function ensureBuildExists() {
   }
 }
 
-function startServer() {
+function startServer(handler) {
   return new Promise((resolve, reject) => {
     const server = http.createServer((req, res) =>
       handler(req, res, { public: siteRoot })
@@ -46,6 +45,15 @@ function startServer() {
 }
 
 async function generatePdf() {
+  if (disablePdf) {
+    logPdf("PDF generation disabled via DISABLE_PDF");
+    return;
+  }
+
+  // Lazy-load optional PDF dependencies so Docker dev can skip Puppeteer.
+  const handler = require("serve-handler");
+  const puppeteer = require("puppeteer");
+
   ensureBuildExists();
   let server;
   let port;
@@ -53,7 +61,7 @@ async function generatePdf() {
   let page;
 
   try {
-    const started = await startServer();
+    const started = await startServer(handler);
     server = started.server;
     port = started.port;
     logPdf(

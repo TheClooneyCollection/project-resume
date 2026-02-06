@@ -3,6 +3,8 @@ const yaml = require("js-yaml");
 
 module.exports = function (eleventyConfig) {
   const environment = process.env.ELEVENTY_ENV || "development";
+  const disablePdf =
+    process.env.DISABLE_PDF === "1" || process.env.DISABLE_PDF === "true";
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
   eleventyConfig.addDataExtension("yml", (contents) => yaml.load(contents));
   eleventyConfig.ignores.add("_data/cv.yaml");
@@ -25,7 +27,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.on("eleventy.after", () => {
     return new Promise((resolve, reject) => {
-      exec("node scripts/generate-pdf.js", (error, stdout, stderr) => {
+      const command = disablePdf
+        ? "node scripts/generate-pdf.js --disable-pdf"
+        : "node scripts/generate-pdf.js";
+      exec(command, (error, stdout, stderr) => {
         if (stdout) {
           console.log(stdout);
         }

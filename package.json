@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "ELEVENTY_ENV=development eleventy --serve",
+    "dev:disable_pdf": "DISABLE_PDF=1 PUPPETEER_SKIP_DOWNLOAD=1 ELEVENTY_ENV=development eleventy --serve",
     "prod": "ELEVENTY_ENV=production eleventy --serve",
+    "prod:disable_pdf": "DISABLE_PDF=1 PUPPETEER_SKIP_DOWNLOAD=1 ELEVENTY_ENV=production eleventy --serve",
     "build": "ELEVENTY_ENV=production eleventy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
