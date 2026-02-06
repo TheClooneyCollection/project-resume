@@ -33,6 +33,16 @@ https://resume.nicholas.clooney.io/
 - Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
 - PDF generation is disabled via the `:disable_pdf` commands with `DISABLE_PDF=1` in the `package.json` file.
 
+## Docker (With PDF)
+- Use `docker-compose.yaml` to run with a custom Puppeteer image (includes Chromium).
+- The Puppeteer image is large (roughly 1.6GB) due to the bundled browser dependencies.
+- If you'd prefer pre-pull, then run `docker pull ghcr.io/puppeteer/puppeteer:latest` before starting the services.
+- Start the dev or prod service:
+  - `docker compose up resume-dev`
+  - `docker compose up resume-prod`
+- Or run both at once: `docker compose up`
+- Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
+
 ## Project Structure
 - `_data/cv.yaml` — primary data source; copy it from the template and update the content with your experience, skills, and links.
 - `_data/cv.template.yaml` — reference template that mirrors the expected schema for `_data/cv.yaml`.
