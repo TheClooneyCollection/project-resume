@@ -1,6 +1,6 @@
 # Project Resume
 
-Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/) that automatically captures a shareable PDF during `npm run build/dev`. Resume content lives in YAML, is rendered with Nunjucks templates, and styled for both screen and print layouts.
+Data-driven curriculum vitae built with [Eleventy (11ty)](https://www.11ty.dev/) that can automatically capture a shareable PDF during Eleventy runs (`npm run build`, `npm run dev`, `npm run prod`) unless disabled. Resume content lives in YAML, is rendered with Nunjucks templates, and styled for both screen and print layouts.
 
 https://resume.nicholas.clooney.io/
 
@@ -14,7 +14,7 @@ https://resume.nicholas.clooney.io/
 
 
 ## Quick Start
-1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details (or run `npm run link -- "<file-path>"` to symlink `_data/cv.yaml` to another YAML source).
+1. Copy `_data/cv.template.yaml` to `_data/cv.yaml`, then update the new file with your details.
 2. Copy `_data/contact.example.yaml` to `_data/contact.yaml`, then update the email and phone values used in the print preview.
 3. Install dependencies: `npm install`
 4. Launch the development server: `npm run dev`, then open `http://localhost:8080`
@@ -26,21 +26,20 @@ https://resume.nicholas.clooney.io/
 - The page styles live in `css/resume-responsive.css`; tweak spacing or breakpoints here when iterating.
 
 ## Docker (No PDF)
-- Use `docker-compose-no-pdf.yml` to run Eleventy in Docker without installing Puppeteer.
+- Use `docker-compose-no-pdf.yml` to run Eleventy in Docker without PDF generation.
 - Start the dev or prod service:
-  - `docker compose -f docker-compose-no-pdf.yml up resume-dev`
-  - `docker compose -f docker-compose-no-pdf.yml up resume-prod`
+  - `docker compose -f docker-compose-no-pdf.yml up resume-dev-no-pdf`
+  - `docker compose -f docker-compose-no-pdf.yml up resume-prod-no-pdf`
 - Or run both at once: `docker compose -f docker-compose-no-pdf.yml up`
 - Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
 - PDF generation is disabled via the `:disable_pdf` commands with `DISABLE_PDF=1` in the `package.json` file.
 
 ## Docker (With PDF)
-- Use `docker-compose.yaml` to run with a custom Puppeteer image (includes Chromium).
-- The Puppeteer image is large (roughly 1.6GB) due to the bundled browser dependencies.
-- If you'd prefer pre-pull, then run `docker pull ghcr.io/puppeteer/puppeteer:latest` before starting the services.
+- Use `docker-compose.yaml` to run with the local `Dockerfile` image, which installs Chromium for Puppeteer-based PDF export.
+- The PDF-capable image is still on the larger side (about `1.75GB`) due to Chromium and Puppeteer dependencies.
 - Start the dev or prod service:
-  - `docker compose up resume-dev`
-  - `docker compose up resume-prod`
+  - `docker compose up dev`
+  - `docker compose up prod`
 - Or run both at once: `docker compose up`
 - Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
 
@@ -58,7 +57,7 @@ https://resume.nicholas.clooney.io/
 - `css/sections.css` — styling for the individual resume sections and typography.
 - `css/print.css` — print-only overrides plus `@page` sizing.
 - `css/resume-responsive.css` — responsive-only styling for the alternate preview page.
-- `scripts/generate-pdf.js` — Puppeteer helper that captures `_site/resume.pdf` after each build.
+- `scripts/generate-pdf.js` — Puppeteer helper that captures `_site/resume.pdf` after Eleventy runs (unless disabled).
 - `.eleventy.js` — Eleventy configuration enabling YAML data loading and stylesheet passthrough.
 
 ## Customization
@@ -66,12 +65,9 @@ https://resume.nicholas.clooney.io/
 - Modify or add sections in `src/index.njk` to reflect additional resume components (e.g., awards, speaking).
 - Tweak typography, spacing, and print rules across `css/base.css`, `css/display.css`, `css/sections.css`, and `css/print.css`. The layout relies on A4 dimensions (`210mm` width, `@page` size).
 
-### Linking to an external CV source
-- Run `npm run link -- "<file-path>"` to replace `_data/cv.yaml` with a symlink that points to another YAML file (e.g., `npm run link -- "/Users/.../goodnotes-principal.cv.yaml"`).
-- The command removes any existing `_data/cv.yaml` before linking, so make sure you’ve already saved local edits you care about.
-
 ## PDF Export
 - Running `npm run build` triggers `scripts/generate-pdf.js`, which temporarily serves `_site/` on an ephemeral localhost port and captures `_site/resume.pdf` with Puppeteer.
+- `npm run dev` and `npm run prod` also run the same PDF step after Eleventy writes output; use `npm run dev:disable_pdf` or `npm run prod:disable_pdf` to skip it.
 - The “Download PDF” button links directly to `/resume.pdf`; make sure the build completed so the file exists.
 - When printing manually, disable browser-supplied headers/footers if you want a clean PDF (Chrome: *More Settings → Headers and footers*).
 - Ensure print margins remain at the defaults defined in CSS (`12mm` via `@page`).
