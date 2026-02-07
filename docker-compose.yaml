@@ -1,5 +1,6 @@
 services:
   resume-dev:
+    image: project-resume:latest
     build: .
     working_dir: /app
     volumes:
@@ -16,6 +17,7 @@ services:
     command: >
       sh -lc "npm install && npm run dev"
   resume-prod:
+    image: project-resume:latest
     build: .
     working_dir: /app
     volumes:
