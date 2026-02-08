@@ -1,0 +1,18 @@
+services:
+  dev:
+    ports: !reset []
+    networks:
+      edge:
+        aliases:
+          - project-resume-dev
+  prod:
+    ports: !reset []
+    networks:
+      edge:
+        aliases:
+          - project-resume-prod
+
+networks:
+  edge:
+    external: true
+    name: edge

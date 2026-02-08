@@ -35,13 +35,20 @@ https://resume.nicholas.clooney.io/
 - PDF generation is disabled via the `:disable_pdf` commands with `DISABLE_PDF=1` in the `package.json` file.
 
 ## Docker (With PDF)
-- Use `docker-compose.yaml` to run with the local `Dockerfile` image, which installs Chromium for Puppeteer-based PDF export.
+- Use `compose.yml` to run with the local `Dockerfile` image, which installs Chromium for Puppeteer-based PDF export.
 - The PDF-capable image is still on the larger side (about `1.75GB`) due to Chromium and Puppeteer dependencies.
-- Start the dev or prod service:
-  - `docker compose up dev`
-  - `docker compose up prod`
-- Or run both at once: `docker compose up`
-- Open `http://localhost:8090` for dev or `http://localhost:8091` for prod.
+- Default mode (public ports):
+  - `docker compose up -d`
+  - Dev: `http://127.0.0.1:8080`
+  - Prod: `http://127.0.0.1:8090`
+- Shared-edge mode (no host ports; for reverse proxy via Caddy on the `edge` network):
+  - One-time network create: `docker network create edge 2>/dev/null || true`
+  - Run: `docker compose -f compose.yml -f compose.edge.yml up -d`
+  - Caddy (in the ingress stack) should `reverse_proxy` to the `dev` or `prod` container names on the `edge` network.
+
+## Docker Debugging
+- Show merged config: `docker compose -f compose.yml -f compose.edge.yml config`
+- Find container DNS names on the edge network: `docker network inspect edge --format '{{range $id,$c := .Containers}}{{$c.Name}} aliases={{printf "%v" $c.Aliases}}{{"\n"}}{{end}}'`
 
 ## Project Structure
 - `_data/cv.yaml` — primary data source; copy it from the template and update the content with your experience, skills, and links.
