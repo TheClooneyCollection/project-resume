@@ -2,6 +2,7 @@ services:
   dev:
     image: project-resume:latest
     build: .
+    restart: unless-stopped
     working_dir: /app
     volumes:
       - ./:/app:cached
@@ -27,6 +28,7 @@ services:
   prod:
     image: project-resume:latest
     build: .
+    restart: unless-stopped
     working_dir: /app
     volumes:
       - ./:/app:cached
