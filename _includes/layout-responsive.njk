@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ cv.name }} - Responsive CV</title>
+  <title>{{ cvData.name }} - Responsive CV</title>
   <link rel="stylesheet" href="/css/resume-responsive.css">
   {% if currentEnvironment == 'production' and umami.enabled %}
   <script defer src="{{ umami.scriptSrc }}" data-website-id="{{ umami.websiteId }}"></script>
@@ -21,9 +21,9 @@
       </div>
     </header>
     {% endif %}
-    {% if cv.contact and cv.contact.githubRepo %}
+    {% if cvData.contact and cvData.contact.githubRepo %}
     <div class="page-shell__repo">
-      <a class="repo-link" href="{{ cv.contact.githubRepo }}" target="_blank" rel="noopener">
+      <a class="repo-link" href="{{ cvData.contact.githubRepo }}" target="_blank" rel="noopener">
         View this project on GitHub
       </a>
     </div>

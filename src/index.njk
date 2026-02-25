@@ -7,39 +7,39 @@ permalink: index.html
 
 <section class="intro">
   <div class="intro__heading">
-    <h1 class="intro__name">{{ cv.name }}</h1>
+    <h1 class="intro__name">{{ cvData.name }}</h1>
     <ul class="contact-list">
       <li>
-        <a href="{{ cv.contact.website }}" target="_blank" rel="noopener">
-          {{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        <a href="{{ cvData.contact.website }}" target="_blank" rel="noopener">
+          {{ cvData.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
         </a>
       </li>
-      {% if cv.contact.githubProfile %}
+      {% if cvData.contact.githubProfile %}
       <li>
-        <a href="{{ cv.contact.githubProfile }}" target="_blank" rel="noopener">
-          {{ cv.contact.githubProfile | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        <a href="{{ cvData.contact.githubProfile }}" target="_blank" rel="noopener">
+          {{ cvData.contact.githubProfile | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
         </a>
       </li>
       {% endif %}
-      {% if cv.contact.githubCollection %}
+      {% if cvData.contact.githubCollection %}
       <li>
-        <a href="{{ cv.contact.githubCollection }}" target="_blank" rel="noopener">
-          {{ cv.contact.githubCollection | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
+        <a href="{{ cvData.contact.githubCollection }}" target="_blank" rel="noopener">
+          {{ cvData.contact.githubCollection | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
         </a>
       </li>
       {% endif %}
     </ul>
-    <p class="intro__summary">{{ cv.summary }}</p>
+    <p class="intro__summary">{{ cvData.summary }}</p>
   </div>
 </section>
 
-{% if cv.skills %}
+{% if cvData.skills %}
 <section class="section skills">
   <div class="section__heading">
     <h2>Core Skills</h2>
   </div>
   <div class="skills-grid">
-    {% for skill in cv.skills %}
+    {% for skill in cvData.skills %}
     <article class="skills-grid__item">
       <h3>{{ skill.label }}</h3>
       {% if skill.items %}
@@ -64,12 +64,12 @@ permalink: index.html
   <ol class="experience-list">
     {% set currentEnvironment = environment or 'development' %}
     {% set shouldFilter = currentEnvironment == 'development' %}
-    {% set includedTags = (cv.tags and cv.tags.included) or [] %}
-    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+    {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+    {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
     {% set includedSet = includedTags | toSet %}
     {% set excludedSet = excludedTags | toSet %}
     {% set includeAllTags = includedSet.has('all') %}
-    {% for job in cv.experience %}
+    {% for job in cvData.experience %}
     <li class="experience-list__item">
       <header class="experience-list__header">
         <div>
@@ -107,7 +107,7 @@ permalink: index.html
   </ol>
 </section>
 
-{% if cv.openSourceProjects %}
+{% if cvData.openSourceProjects %}
 <section class="section projects">
   <div class="section__heading">
     <h2>Open Source Projects</h2>
@@ -115,12 +115,12 @@ permalink: index.html
   <div class="card-grid">
     {% set currentEnvironment = environment or 'development' %}
     {% set shouldFilter = currentEnvironment == 'development' %}
-    {% set includedTags = (cv.tags and cv.tags.included) or [] %}
-    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+    {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+    {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
     {% set includedSet = includedTags | toSet %}
     {% set excludedSet = excludedTags | toSet %}
     {% set includeAllTags = includedSet.has('all') %}
-    {% for project in cv.openSourceProjects %}
+    {% for project in cvData.openSourceProjects %}
     {% set projectTags = project.tags or [] %}
     {% set projectSet = projectTags | toSet %}
     {% set isIncluded = true %}
@@ -138,13 +138,13 @@ permalink: index.html
 </section>
 {% endif %}
 
-{% if cv.interests %}
+{% if cvData.interests %}
 <section class="section interests">
   <div class="section__heading">
     <h2>Interests</h2>
   </div>
   <ul class="chip-list">
-    {% for interest in cv.interests %}
+    {% for interest in cvData.interests %}
     <li>{{ interest }}</li>
     {% endfor %}
   </ul>

@@ -4,25 +4,25 @@ permalink: print_preview/index.html
 ---
 
 <header>
-    <h1>{{ cv.name }}</h1>
+    <h1>{{ cvData.name }}</h1>
     <div class="contact-info">
         {% set contactEmail = (contact and contact.email) or '' %}
         {% set contactPhone = (contact and contact.phone) or '' %}
         {% set contactPhoneHref = contactPhone | replace(' ', '') | replace('(', '') | replace(')', '') %}
         {% if contactEmail %}<span><a href="mailto:{{ contactEmail }}">{{ contactEmail }}</a></span>{% endif %}
         {% if contactPhone %}<span><a href="tel:{{ contactPhoneHref }}">{{ contactPhone }}</a></span>{% endif %}
-        <span><a href="{{ cv.contact.website }}" target="_blank" rel="noopener">{{ cv.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
-        {% if cv.contact.resume %}
-        <span class="contact-resume">View full resume at <a href="{{ cv.contact.resume }}" target="_blank" rel="noopener">{{ cv.contact.resume | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
+        <span><a href="{{ cvData.contact.website }}" target="_blank" rel="noopener">{{ cvData.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
+        {% if cvData.contact.resume %}
+        <span class="contact-resume">View full resume at <a href="{{ cvData.contact.resume }}" target="_blank" rel="noopener">{{ cvData.contact.resume | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}</a></span>
         {% endif %}
     </div>
 </header>
 
 <section class="summary">
-    <p>{{ cv.summary }}</p>
+    <p>{{ cvData.summary }}</p>
 </section>
 
-{% set sectionsConfig = cv.sections or {} %}
+{% set sectionsConfig = cvData.sections or {} %}
 {% set enabledSections = sectionsConfig.enabled or [] %}
 {% set disabledSections = sectionsConfig.disabled or [] %}
 {% set hasEnabledOverrides = (enabledSections | length) > 0 %}
@@ -31,11 +31,11 @@ permalink: print_preview/index.html
 {% set showProjects = ('projects' not in disabledSections) and (not hasEnabledOverrides or 'projects' in enabledSections) %}
 {% set showInterests = ('interests' not in disabledSections) and (not hasEnabledOverrides or 'interests' in enabledSections) %}
 
-{% if showSkills and cv.skills %}
+{% if showSkills and cvData.skills %}
 <section class="skills">
     <h2>Core Skills</h2>
     <div class="skills-grid">
-        {% for skill in cv.skills %}
+        {% for skill in cvData.skills %}
         <div class="skill">
             <h3>{{ skill.label }}</h3>
             {% if skill.items %}
@@ -49,17 +49,17 @@ permalink: print_preview/index.html
 </section>
 {% endif %}
 
-{% if showExperience and cv.experience %}
+{% if showExperience and cvData.experience %}
 <section class="professional-experience">
     <h2>Professional Experience</h2>
     {% set currentEnvironment = environment or 'development' %}
     {% set shouldFilter = currentEnvironment == 'development' %}
-    {% set includedTags = (cv.tags and cv.tags.included) or [] %}
-    {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+    {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+    {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
     {% set includedSet = includedTags | toSet %}
     {% set excludedSet = excludedTags | toSet %}
     {% set includeAllTags = includedSet.has('all') %}
-    {% for job in cv.experience %}
+    {% for job in cvData.experience %}
     <div class="job">
         <div class="job-header{% if job.pageBreakBefore %} page-break-before{% endif %}">
             <h3>
@@ -91,18 +91,18 @@ permalink: print_preview/index.html
 </section>
 {% endif %}
 
-{% if showProjects and cv.openSourceProjects %}
+{% if showProjects and cvData.openSourceProjects %}
 <section class="open-source">
     <h2>Open Source Projects</h2>
     <ul class="project-list">
         {% set currentEnvironment = environment or 'development' %}
         {% set shouldFilter = currentEnvironment == 'development' %}
-        {% set includedTags = (cv.tags and cv.tags.included) or [] %}
-        {% set excludedTags = (cv.tags and cv.tags.excluded) or [] %}
+        {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+        {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
         {% set includedSet = includedTags | toSet %}
         {% set excludedSet = excludedTags | toSet %}
         {% set includeAllTags = includedSet.has('all') %}
-        {% for project in cv.openSourceProjects %}
+        {% for project in cvData.openSourceProjects %}
         {% set projectTags = project.tags or [] %}
         {% set projectSet = projectTags | toSet %}
         {% set shouldRender = true %}
@@ -122,11 +122,11 @@ permalink: print_preview/index.html
 </section>
 {% endif %}
 
-{% if showInterests and cv.interests %}
+{% if showInterests and cvData.interests %}
 <section class="interests">
     <h2>Interests</h2>
     <ul>
-        {% for interest in cv.interests %}
+        {% for interest in cvData.interests %}
         <li>{{ interest }}</li>
         {% endfor %}
     </ul>

@@ -4,13 +4,13 @@ const yaml = require("js-yaml");
 
 module.exports = () => {
   const dataDir = __dirname;
-  const primaryPath = path.join(dataDir, "cv.yaml");
-  const templatePath = path.join(dataDir, "cv.template.yaml");
-  const resolvedPath = fs.existsSync(primaryPath)
-    ? primaryPath
-    : templatePath;
+  const candidates = [
+    path.join(dataDir, "cv.yaml"),
+    path.join(dataDir, "cv.template.yaml"),
+  ];
+  const resolvedPath = candidates.find((candidate) => fs.existsSync(candidate));
 
-  if (!fs.existsSync(resolvedPath)) {
+  if (!resolvedPath) {
     throw new Error(
       "Missing CV data. Expected _data/cv.yaml or _data/cv.template.yaml."
     );
