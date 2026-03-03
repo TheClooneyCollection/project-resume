@@ -135,6 +135,9 @@ permalink: index.html
     </article>
     {% endfor %}
   </div>
+  {% if cvData.contact.projects %}
+  <p><a href="{{ cvData.contact.projects }}" target="_blank" rel="noopener">View additional open source projects</a></p>
+  {% endif %}
 </section>
 {% endif %}
 

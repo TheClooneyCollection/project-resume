@@ -94,6 +94,9 @@ permalink: print_preview/index.html
 {% if showProjects and cvData.openSourceProjects %}
 <section class="open-source">
     <h2>Open Source Projects</h2>
+    {% if cvData.contact.projects %}
+    <p class="projects-directory-link"><a href="{{ cvData.contact.projects }}" target="_blank" rel="noopener">View additional open source projects</a></p>
+    {% endif %}
     <ul class="project-list">
         {% set currentEnvironment = environment or 'development' %}
         {% set shouldFilter = currentEnvironment == 'development' %}
