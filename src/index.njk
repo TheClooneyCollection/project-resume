@@ -35,6 +35,26 @@ permalink: index.html
 </section>
 {% endif %}
 
+{% if cvData.relevant %}
+<section class="section experience">
+  <div class="section__heading">
+    <h2>Relevant Experience</h2>
+  </div>
+  <ol class="experience-list">
+    {% set currentEnvironment = environment or 'development' %}
+    {% set shouldFilter = currentEnvironment == 'development' %}
+    {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+    {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
+    {% set includedSet = includedTags | toSet %}
+    {% set excludedSet = excludedTags | toSet %}
+    {% set includeAllTags = includedSet.has('all') %}
+    {% for job in cvData.relevant %}
+    {{ experienceItem(job, shouldFilter, excludedSet, includedSet, includeAllTags) }}
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
 <section class="section experience">
   <div class="section__heading">
     <h2>Professional Experience</h2>

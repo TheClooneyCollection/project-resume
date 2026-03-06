@@ -29,6 +29,7 @@ permalink: print_preview/index.html
 {% set hasEnabledOverrides = (enabledSections | length) > 0 %}
 {% set showSkills = ('skills' not in disabledSections) and (not hasEnabledOverrides or 'skills' in enabledSections) %}
 {% set showExperience = ('experiences' not in disabledSections) and (not hasEnabledOverrides or 'experiences' in enabledSections) %}
+{% set showRelevant = ('relevant' not in disabledSections) and (not hasEnabledOverrides or 'relevant' in enabledSections) %}
 {% set showProjects = ('projects' not in disabledSections) and (not hasEnabledOverrides or 'projects' in enabledSections) %}
 {% set showInterests = ('interests' not in disabledSections) and (not hasEnabledOverrides or 'interests' in enabledSections) %}
 
@@ -40,6 +41,22 @@ permalink: print_preview/index.html
         {{ skillItem(skill) }}
         {% endfor %}
     </div>
+</section>
+{% endif %}
+
+{% if showRelevant and cvData.relevant %}
+<section class="professional-experience">
+    <h2>Relevant Experience</h2>
+    {% set currentEnvironment = environment or 'development' %}
+    {% set shouldFilter = currentEnvironment == 'development' %}
+    {% set includedTags = (cvData.tags and cvData.tags.included) or [] %}
+    {% set excludedTags = (cvData.tags and cvData.tags.excluded) or [] %}
+    {% set includedSet = includedTags | toSet %}
+    {% set excludedSet = excludedTags | toSet %}
+    {% set includeAllTags = includedSet.has('all') %}
+    {% for job in cvData.relevant %}
+    {{ experienceItem(job, shouldFilter, excludedSet, includedSet, includeAllTags) }}
+    {% endfor %}
 </section>
 {% endif %}
 

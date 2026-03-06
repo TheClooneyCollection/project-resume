@@ -1,6 +1,7 @@
 sections:
   enabled:
     - skills
+    - relevant
     - experiences
     - projects
   disabled:
