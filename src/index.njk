@@ -2,6 +2,7 @@
 layout: layout-responsive.njk
 permalink: index.html
 ---
+{% from "components/index-items.njk" import contactItem, skillItem, experienceItem, projectItem, interestItem %}
 
 {% set currentEnvironment = environment or 'development' %}
 
@@ -9,24 +10,12 @@ permalink: index.html
   <div class="intro__heading">
     <h1 class="intro__name">{{ cvData.name }}</h1>
     <ul class="contact-list">
-      <li>
-        <a href="{{ cvData.contact.website }}" target="_blank" rel="noopener">
-          {{ cvData.contact.website | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
-        </a>
-      </li>
+      {{ contactItem(cvData.contact.website) }}
       {% if cvData.contact.githubProfile %}
-      <li>
-        <a href="{{ cvData.contact.githubProfile }}" target="_blank" rel="noopener">
-          {{ cvData.contact.githubProfile | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
-        </a>
-      </li>
+      {{ contactItem(cvData.contact.githubProfile) }}
       {% endif %}
       {% if cvData.contact.githubCollection %}
-      <li>
-        <a href="{{ cvData.contact.githubCollection }}" target="_blank" rel="noopener">
-          {{ cvData.contact.githubCollection | replace('https://', '') | replace('http://', '') | replace('www.', '') | trim }}
-        </a>
-      </li>
+      {{ contactItem(cvData.contact.githubCollection) }}
       {% endif %}
     </ul>
     <p class="intro__summary">{{ cvData.summary }}</p>
@@ -40,18 +29,7 @@ permalink: index.html
   </div>
   <div class="skills-grid">
     {% for skill in cvData.skills %}
-    <article class="skills-grid__item">
-      <h3>{{ skill.label }}</h3>
-      {% if skill.items %}
-      <ul class="chip-list">
-        {% for item in skill.items %}
-        <li>{{ item }}</li>
-        {% endfor %}
-      </ul>
-      {% elseif skill.description %}
-      <p>{{ skill.description }}</p>
-      {% endif %}
-    </article>
+    {{ skillItem(skill) }}
     {% endfor %}
   </div>
 </section>
@@ -70,39 +48,7 @@ permalink: index.html
     {% set excludedSet = excludedTags | toSet %}
     {% set includeAllTags = includedSet.has('all') %}
     {% for job in cvData.experience %}
-    <li class="experience-list__item">
-      <header class="experience-list__header">
-        <div>
-          <h3>
-            {{ job.title }}
-            {% if job.company %}<span class="experience-list__company"> · {{ job.company }}</span>{% endif %}
-          </h3>
-          {% if job.location %}
-          <p class="experience-list__location">{{ job.location }}</p>
-          {% endif %}
-        </div>
-        <span class="experience-list__dates">{{ job.startDate }} – {{ job.endDate }}</span>
-      </header>
-      {% if job.summary %}
-      <p class="experience-list__summary">{{ job.summary }}</p>
-      {% endif %}
-      {% if job.achievements %}
-      <ul class="experience-list__achievements">
-        {% for item in job.achievements %}
-        {% set achievementText = item.text or item %}
-        {% set achievementTags = item.tags or [] %}
-        {% set achievementSet = achievementTags | toSet %}
-        {% set isIncluded = true %}
-        {% if shouldFilter %}
-          {% set isExcluded = achievementSet.intersection(excludedSet).size > 0 %}
-          {% set matchesIncluded = includeAllTags or achievementSet.intersection(includedSet).size > 0 %}
-          {% set isIncluded = (not isExcluded) and matchesIncluded %}
-        {% endif %}
-        <li class="experience-list__achievement{% if not isIncluded %} experience-list__achievement--excluded{% endif %}">{{ achievementText }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-    </li>
+    {{ experienceItem(job, shouldFilter, excludedSet, includedSet, includeAllTags) }}
     {% endfor %}
   </ol>
 </section>
@@ -121,18 +67,7 @@ permalink: index.html
     {% set excludedSet = excludedTags | toSet %}
     {% set includeAllTags = includedSet.has('all') %}
     {% for project in cvData.openSourceProjects %}
-    {% set projectTags = project.tags or [] %}
-    {% set projectSet = projectTags | toSet %}
-    {% set isIncluded = true %}
-    {% if shouldFilter %}
-      {% set isExcluded = projectSet.intersection(excludedSet).size > 0 %}
-      {% set matchesIncluded = includeAllTags or projectSet.intersection(includedSet).size > 0 %}
-      {% set isIncluded = (not isExcluded) and matchesIncluded %}
-    {% endif %}
-    <article class="card-grid__item{% if not isIncluded %} card-grid__item--excluded{% endif %}">
-      <h3><a href="{{ project.url }}" target="_blank" rel="noopener">{{ project.name }}</a></h3>
-      <p>{{ project.description }}</p>
-    </article>
+    {{ projectItem(project, shouldFilter, excludedSet, includedSet, includeAllTags) }}
     {% endfor %}
   </div>
   {% if cvData.contact.projects %}
@@ -148,7 +83,7 @@ permalink: index.html
   </div>
   <ul class="chip-list">
     {% for interest in cvData.interests %}
-    <li>{{ interest }}</li>
+    {{ interestItem(interest) }}
     {% endfor %}
   </ul>
 </section>
